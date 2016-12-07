@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import {
   SET_PAD_CLICKABILITY,
-  PUSH_PLAYER_COMBO
+  PUSH_PLAYER_SEQUENCE
 } from './actions'
 
 const clickable = (state = true, action) => {
@@ -13,9 +13,9 @@ const clickable = (state = true, action) => {
   }
 }
 
-const playerCombo = (state = [], action) => {
+const playerSequence = (state = [], action) => {
   switch (action.type) {
-    case PUSH_PLAYER_COMBO:
+    case PUSH_PLAYER_SEQUENCE:
       return [
         ...state,
         action.number
@@ -27,7 +27,7 @@ const playerCombo = (state = [], action) => {
 
 const appReducer = combineReducers({
   clickable,
-  playerCombo
+  playerSequence
 })
 
 const rootReducer = (state, action) => {
