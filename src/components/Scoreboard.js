@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-const Scorebord = ({ isGoingNext=false, score=3 }) => {
+const Scorebord = ({ isGoingNext=false, display='7' }) => {
   var scoreStyle = classNames({
     'animated'    : true,
     'fadeInDown'  : !isGoingNext,
@@ -11,7 +11,7 @@ const Scorebord = ({ isGoingNext=false, score=3 }) => {
 
   return (
     <div className="score-board">
-      <h1 className={ scoreStyle }>{ score }</h1>
+      <h1 className={ scoreStyle }>{ display }</h1>
     </div>
   )
 }
