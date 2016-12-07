@@ -46,7 +46,7 @@ const gameSequence = (state = [1], action) => {
   }
 }
 
-const display = (state = '0', action) => {
+const display = (state = '1', action) => {
   switch (action.type) {
     case SET_DISPLAY:
       return action.display
