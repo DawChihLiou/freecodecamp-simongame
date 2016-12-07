@@ -1,31 +1,7 @@
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-.container {
-  width: 50vw;
-  height: 50vw;
-  position: relative;
-  text-align: center;
-}
+@import '../node_modules/animate.css/animate.min.css';
+/* general */
 .wrap {
   position: relative;
-}
-.pad {
-  width: 25vw;
-  height: 25vw;
-  opacity: .7;
-}
-.controller {
-  width: 20vw;
-  height: 20vw;
-  background-color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -10vw;
 }
 .clickable {
   cursor: pointer;
@@ -33,6 +9,25 @@ body {
 }
 .unclickable {
   pointer-events: none;
+}
+.font-white {
+  color: #fff;
+}
+.container {
+  width: 80vw;
+  height: 80vw;
+  position: relative;
+  text-align: center;
+}
+.margin-no {
+  margin: 0;
+}
+
+/* pad */
+.pad {
+  width: 40vw;
+  height: 40vw;
+  opacity: .7;
 }
 .pad.clickable:active {
   opacity: 1;
@@ -48,4 +43,29 @@ body {
 }
 .p-4 {
   background-color: #c0392b;
+}
+
+/* controller */
+.control {
+  height: 8vw;
+  background-color: #ecf0f1;
+  line-height: 8vw;
+}
+.control.active {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+/* score board */
+.score-board {
+  width: 36vw;
+  height: 36vw;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -18vw;
+}
+.score-board h1 {
+  line-height: 36vw;
 }
