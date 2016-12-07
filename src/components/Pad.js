@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
 const Pad = ({ clickable=true, onMouseDown=(e)=>{console.log('down ', e.target.id)}, onMouseUp=(e)=>{console.log('up ',e.target.id)} }) => {
@@ -24,6 +24,12 @@ const Pad = ({ clickable=true, onMouseDown=(e)=>{console.log('down ', e.target.i
       </div>
     </div>
   )
+}
+
+Pad.protoTypes = {
+  clickable   : PropTypes.bool.isRequired,
+  onMouseDown : PropTypes.func.isRequired,
+  onMouseUp   : PropTypes.func.isRequired
 }
 
 export default Pad
