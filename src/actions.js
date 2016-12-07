@@ -4,9 +4,11 @@ export const SET_START            = 'SET_START'
 export const SET_STRICT           = 'SET_STRICT'
 export const SET_IS_GOING_NEXT    = 'SET_IS_GOING_NEXT'
 export const SET_DISPLAY          = 'SET_DISPLAY'
-export const PLAY_SEQUENCE        = 'PLAY_SEQUENCE'
-export const PUSH_SEQUENCE        = 'PUSH_SEQUENCE'
+export const PLAY_GAME_SEQUENCE   = 'PLAY_GAME_SEQUENCE'
+export const PUSH_GAME_SEQUENCE   = 'PUSH_GAME_SEQUENCE'
+export const RESET_GAME_SEQUENCE  = 'RESET_GAME_SEQUENCE'
 export const PUSH_PLAYER_SEQUENCE = 'PUSH_PLAYER_SEQUENCE'
+export const RESET_PLAYER_SEQUENCE= 'RESET_PLAYER_SEQUENCE'
 export const RESET                = 'RESET'
 
 export const setPadClickability = (clickable) => ({
@@ -40,18 +42,22 @@ export const setDisplay = (display) => ({
 })
 
 export const playSequence = (isPlayingSequence) => ({
-  type: PLAY_SEQUENCE,
+  type: PLAY_GAME_SEQUENCE,
   isPlayingSequence
 })
 
-export const pushSequence = (number) => ({
-  type: PUSH_SEQUENCE,
+export const pushGameSequence = (number) => ({
+  type: PUSH_GAME_SEQUENCE,
   number
 })
 
 export const pushPlayerSequence = (number) => ({
   type: PUSH_PLAYER_SEQUENCE,
   number
+})
+
+export const resetPlayerSequence = () => ({
+  type: RESET_PLAYER_SEQUENCE
 })
 
 export const reset = () => ({

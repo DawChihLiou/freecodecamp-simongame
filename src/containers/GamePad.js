@@ -1,7 +1,11 @@
 import { connect } from 'react-redux'
 import Pad from '../components/Pad'
+import audio from '../utils/audio'
 import {
-  pushPlayerSequence
+  pushPlayerSequence,
+  pushGameSequence,
+  resetPlayerSequence,
+  setDisplay
 } from '../actions'
 
 const mapStateToProps = (state) => ({
@@ -9,20 +13,30 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => {
-  var audio = {
-    0: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
-    1: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
-    2: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'),
-    3: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3')
-  }
-
   return {
     onClick: e => {
       let id = e.target.id.split('-')[1]
       // play audio
       audio[id].play()
       // record sequence
-      dispatch(pushPlayerSequence(id))
+      dispatch(handlePlayerSequence(id))
+    }
+  }
+}
+
+function handlePlayerSequence (id) {
+  return (dispatch, getState) => {
+    var state
+    //update sequence
+    dispatch(pushPlayerSequence(id))
+    state = getState()
+    // compare player seuqence with game sequence
+    if (state.playerSequence.length === state.gameSequence.length) {
+      if (state.playerSequence.join('') === state.gameSequence.join('')) {
+        dispatch(pushGameSequence(Math.floor(Math.random() * 3)))
+        dispatch(setDisplay(state.gameSequence.length))
+      }
+      dispatch(resetPlayerSequence())
     }
   }
 }
