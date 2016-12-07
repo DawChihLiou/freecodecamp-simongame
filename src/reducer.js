@@ -6,6 +6,7 @@ import {
   PUSH_GAME_SEQUENCE,
   PLAY_GAME_SEQUENCE,
   SET_DISPLAY,
+  SET_IS_GOING_NEXT,
   RESET
 } from './actions'
 
@@ -45,10 +46,19 @@ const gameSequence = (state = [1], action) => {
   }
 }
 
-const display = (state = '', action) => {
+const display = (state = '0', action) => {
   switch (action.type) {
     case SET_DISPLAY:
       return action.display
+    default:
+      return state
+  }
+}
+
+const isGoingNext = (state = false, action) => {
+  switch (action.type) {
+    case SET_IS_GOING_NEXT:
+      return action.isGoingNext
     default:
       return state
   }
@@ -58,7 +68,8 @@ const appReducer = combineReducers({
   clickable,
   playerSequence,
   gameSequence,
-  display
+  display,
+  isGoingNext
 })
 
 const rootReducer = (state, action) => {

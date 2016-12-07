@@ -1,7 +1,7 @@
 import React from 'react'
 import Controller from './Controller'
 import GamePad from '../containers/GamePad'
-import Scoreboard from './Scoreboard'
+import Scoreboard from '../containers/Scoreboard'
 import '../App.css'
 
 const App = () => (

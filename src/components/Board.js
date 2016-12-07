@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
-const Scorebord = ({ isGoingNext=false, display='7' }) => {
+const Board = ({ isGoingNext=false, display='7' }) => {
   var scoreStyle = classNames({
     'animated'    : true,
     'fadeInDown'  : !isGoingNext,
@@ -16,9 +16,9 @@ const Scorebord = ({ isGoingNext=false, display='7' }) => {
   )
 }
 
-Scorebord.propTypes = {
+Board.propTypes = {
   isGoingNext : PropTypes.bool.isRequired,
   display     : PropTypes.string.isRequired
 }
 
-export default Scorebord
+export default Board

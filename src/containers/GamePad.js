@@ -5,7 +5,8 @@ import {
   pushPlayerSequence,
   pushGameSequence,
   resetPlayerSequence,
-  setDisplay
+  setDisplay,
+  setIsGoingNext
 } from '../actions'
 
 const mapStateToProps = (state) => ({
@@ -34,7 +35,13 @@ function handlePlayerSequence (id) {
     if (state.playerSequence.length === state.gameSequence.length) {
       if (state.playerSequence.join('') === state.gameSequence.join('')) {
         dispatch(pushGameSequence(Math.floor(Math.random() * 3)))
-        dispatch(setDisplay(state.gameSequence.length))
+        dispatch(setIsGoingNext(true))
+
+        setTimeout(()=> {
+          dispatch(setDisplay(state.gameSequence.length.toString()))
+          dispatch(setIsGoingNext(false))
+        }, 200)
+
       }
       dispatch(resetPlayerSequence())
     }
