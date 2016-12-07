@@ -48,8 +48,9 @@
 /* controller */
 .control {
   height: 8vw;
-  background-color: #ecf0f1;
+  background-color: #eee;
   line-height: 8vw;
+  font-size: 1.2em;
 }
 .control.active {
   background-color: #1abc9c;
