@@ -35,11 +35,13 @@ function handlePlayerSequence (id) {
     // compare player seuqence with game sequence
     if (state.playerSequence.length === state.gameSequence.length) {
       if (state.playerSequence.join('') === state.gameSequence.join('')) {
+        // push a new random number to game sequence and initiate displayed score change
         dispatch(pushGameSequence(Math.floor(Math.random() * 3)))
         dispatch(setIsGoingNext(true))
 
         state = getState()
         setTimeout(()=> {
+          // displayed score change
           dispatch(setDisplay(state.gameSequence.length.toString()))
           dispatch(setIsGoingNext(false))
         }, 200)
@@ -47,12 +49,15 @@ function handlePlayerSequence (id) {
         dispatch(setDisplay('Wrong!!'))
 
         setTimeout(() => {
+          // display current score
           dispatch(setDisplay(state.gameSequence.length.toString()))
+          // playback audio for current squence
           state.gameSequence.forEach((id, i) => {
             setTimeoutAudio(id, (i + 1) * 500)
           })
         }, 1000)
       }
+      // reset player sequence for the next attempt
       dispatch(resetPlayerSequence())
     }
   }
