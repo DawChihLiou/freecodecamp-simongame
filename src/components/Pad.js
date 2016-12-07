@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
-const Pad = ({ clickable=true, onMouseDown=(e)=>{console.log('down ', e.target.id)}, onMouseUp=(e)=>{console.log('up ',e.target.id)} }) => {
+const Pad = ({ clickable, onClick }) => {
   var padStyle = classNames({
     'col-xs-6': true,
     'pad': true,
@@ -11,8 +11,7 @@ const Pad = ({ clickable=true, onMouseDown=(e)=>{console.log('down ', e.target.i
   return (
     <div
       className="wrap"
-      onMouseDown={ clickable ? onMouseDown : undefined }
-      onMouseUp={ clickable ? onMouseUp : undefined }
+      onClick={ clickable ? onClick : undefined }
     >
       <div className="row">
         <div id="p-0" className={ padStyle }></div>
@@ -28,8 +27,7 @@ const Pad = ({ clickable=true, onMouseDown=(e)=>{console.log('down ', e.target.i
 
 Pad.propTypes = {
   clickable   : PropTypes.bool.isRequired,
-  onMouseDown : PropTypes.func.isRequired,
-  onMouseUp   : PropTypes.func.isRequired
+  onClick : PropTypes.func.isRequired
 }
 
 export default Pad
