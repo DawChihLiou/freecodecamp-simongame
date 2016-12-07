@@ -44,6 +44,11 @@ function handlePlayerSequence (id) {
           // displayed score change
           dispatch(setDisplay(state.gameSequence.length.toString()))
           dispatch(setIsGoingNext(false))
+
+          // play the next sequence
+          setTimeout(() => {
+            playAudio(state.gameSequence)
+          }, 800)
         }, 200)
       } else {
         dispatch(setDisplay('Wrong!!'))
@@ -51,10 +56,8 @@ function handlePlayerSequence (id) {
         setTimeout(() => {
           // display current score
           dispatch(setDisplay(state.gameSequence.length.toString()))
-          // playback audio for current squence
-          state.gameSequence.forEach((id, i) => {
-            setTimeoutAudio(id, (i + 1) * 500)
-          })
+          // play the current squence
+          playAudio(state.gameSequence)
         }, 1000)
       }
       // reset player sequence for the next attempt
@@ -65,6 +68,11 @@ function handlePlayerSequence (id) {
 
 function setTimeoutAudio (id, t) {
   setTimeout(() => { audio[id].play() }, t);
+}
+function playAudio (sequence) {
+  sequence.forEach((id, i) => {
+    setTimeoutAudio(id, (i + 1) * 500)
+  })
 }
 
 const GamePad = connect(
