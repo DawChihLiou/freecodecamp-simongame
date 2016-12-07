@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
 const Scorebord = ({ isGoingNext=false, display='7' }) => {
@@ -14,6 +14,11 @@ const Scorebord = ({ isGoingNext=false, display='7' }) => {
       <h1 className={ scoreStyle }>{ display }</h1>
     </div>
   )
+}
+
+Scorebord.propTypes = {
+  isGoingNext : PropTypes.bool.isRequired,
+  display     : PropTypes.string.isRequired
 }
 
 export default Scorebord

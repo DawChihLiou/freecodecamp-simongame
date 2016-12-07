@@ -26,7 +26,7 @@ const Pad = ({ clickable=true, onMouseDown=(e)=>{console.log('down ', e.target.i
   )
 }
 
-Pad.protoTypes = {
+Pad.propTypes = {
   clickable   : PropTypes.bool.isRequired,
   onMouseDown : PropTypes.func.isRequired,
   onMouseUp   : PropTypes.func.isRequired

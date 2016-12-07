@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import className from 'classnames'
 
 const Controller = ({ onoff=false, start=true, strict=false, onClick = (e) => {console.log(e.target.id)} }) => {
@@ -21,6 +21,13 @@ const Controller = ({ onoff=false, start=true, strict=false, onClick = (e) => {c
       </div>
     </div>
   )
+}
+
+Controller.propTypes = {
+  onoff   : PropTypes.bool.isRequired,
+  start   : PropTypes.bool.isRequired,
+  strict  : PropTypes.bool.isRequired,
+  onClick : PropTypes.func.isRequired
 }
 
 export default Controller
