@@ -7,6 +7,7 @@ export const SET_DISPLAY          = 'SET_DISPLAY'
 export const PLAY_COMBO           = 'PLAY_COMBO'
 export const PUSH_COMBO           = 'PUSH_COMBO'
 export const PUSH_PLAYER_COMBO    = 'PUSH_PLAYER_COMBO'
+export const RESET                = 'RESET'
 
 export const setPadClickability = (clickable) => ({
   type: SET_PAD_CLICKABILITY,
@@ -48,7 +49,11 @@ export const pushCombo = (number) => ({
   number
 })
 
-export const pushPlayerCombo (number) => ({
+export const pushPlayerCombo = (number) => ({
   type: PUSH_PLAYER_COMBO,
   number
+})
+
+export const reset = () => ({
+  type: RESET
 })
