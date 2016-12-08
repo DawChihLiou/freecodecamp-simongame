@@ -6,7 +6,8 @@ import {
   pushGameSequence,
   resetPlayerSequence,
   setDisplay,
-  setIsGoingNext
+  setIsGoingNext,
+  setPadClickability
 } from '../actions'
 
 const mapStateToProps = (state) => ({
@@ -34,6 +35,8 @@ function handlePlayerSequence (id) {
     state = getState()
     // compare player seuqence with game sequence
     if (state.playerSequence.length === state.gameSequence.length) {
+      dispatch(setPadClickability(false))
+
       if (state.playerSequence.join('') === state.gameSequence.join('')) {
         // push a new random number to game sequence and initiate displayed score change
         dispatch(pushGameSequence(Math.floor(Math.random() * 3)))
@@ -47,7 +50,7 @@ function handlePlayerSequence (id) {
 
           // play the next sequence
           setTimeout(() => {
-            playAudio(state.gameSequence)
+            playAudio(state.gameSequence, dispatch)
           }, 800)
         }, 200)
       } else {
@@ -57,7 +60,7 @@ function handlePlayerSequence (id) {
           // display current score
           dispatch(setDisplay(state.gameSequence.length.toString()))
           // play the current squence
-          playAudio(state.gameSequence)
+          playAudio(state.gameSequence, dispatch)
         }, 1000)
       }
       // reset player sequence for the next attempt
@@ -69,9 +72,17 @@ function handlePlayerSequence (id) {
 function setTimeoutAudio (id, t) {
   setTimeout(() => { audio[id].play() }, t);
 }
-function playAudio (sequence) {
+
+function playAudio (sequence, dispatch) {
   sequence.forEach((id, i) => {
-    setTimeoutAudio(id, (i + 1) * 500)
+    let after = (i + 1) * 500
+    setTimeoutAudio(id, after)
+
+    if (i === sequence.length - 1) {
+      setTimeout(() => {
+        dispatch(setPadClickability(true))
+      }, after+100)
+    }
   })
 }
 
