@@ -60,6 +60,10 @@ export const resetPlayerSequence = () => ({
   type: RESET_PLAYER_SEQUENCE
 })
 
+export const resetGameSequence = () => ({
+  type: RESET_GAME_SEQUENCE
+})
+
 export const reset = () => ({
   type: RESET
 })

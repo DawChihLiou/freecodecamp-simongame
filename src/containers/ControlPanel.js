@@ -1,10 +1,16 @@
 import { connect } from 'react-redux'
 import Controller from '../components/Controller'
+import { audio, setTimeoutAudio } from '../utils/audio'
 import {
   setOnoff,
   setStart,
   setStrict,
-  setPadClickability
+  setPadClickability,
+  resetPlayerSequence,
+  resetGameSequence,
+  setDisplay,
+  setIsGoingNext,
+  pushGameSequence
 } from '../actions'
 
 const mapStateToProps = (state) => ({
@@ -30,16 +36,83 @@ function handlePanel (id) {
     switch (id) {
       case 'onoff':
         dispatch(setOnoff(toggle))
+        dispatch(setIsGoingNext(true))
 
         if (!toggle) {
+          // initiate display animation
+          setTimeout(() => {
+            dispatch(setDisplay('off'))
+            dispatch(setIsGoingNext(false))
+          }, 200)
+
+          // turn off and reset the game
           dispatch(setStart(false))
           dispatch(setStrict(false))
+          dispatch(setPadClickability(false))
+          dispatch(resetPlayerSequence())
+          dispatch(resetGameSequence())
         } else {
-          dispatch(setPadClickability(true))
+          // update display
+          setTimeout(() => {
+            dispatch(setDisplay('on'))
+            dispatch(setIsGoingNext(false))
+          }, 200)
         }
         break
       case 'start':
-        if (state.onoff) dispatch(setStart(toggle))
+        if (!state.onoff) return
+
+        dispatch(setIsGoingNext(true))
+
+        if (!toggle) {
+          // reset the game
+
+          setTimeout(() => {
+            dispatch(setDisplay('restart'))
+            dispatch(setIsGoingNext(false))
+          }, 200)
+
+          // reset game
+          dispatch(setPadClickability(false))
+          dispatch(resetPlayerSequence())
+          dispatch(resetGameSequence())
+          dispatch(pushGameSequence(Math.floor(Math.random() * 3)))
+
+          state = getState()
+
+          setTimeout(() => {
+            dispatch(setIsGoingNext(true))
+          }, 1200)
+
+          setTimeout(() => {
+            dispatch(setDisplay(state.gameSequence.length.toString()))
+            dispatch(setIsGoingNext(false))
+          }, 2000)
+
+          setTimeout(() => {
+            setTimeoutAudio(state.gameSequence[0], 0)
+            dispatch(setPadClickability(true))
+          }, 3000)
+        } else {
+          // start the game
+
+          dispatch(setStart(toggle))
+          dispatch(pushGameSequence(Math.floor(Math.random() * 3)))
+
+          state = getState()
+
+          // update display
+          setTimeout(() => {
+            dispatch(setDisplay(state.gameSequence.length.toString()))
+            dispatch(setIsGoingNext(false))
+          }, 200)
+
+          // play audio and enable click on pad
+          setTimeout(() => {
+            setTimeoutAudio(state.gameSequence[0], 0)
+            dispatch(setPadClickability(true))
+          }, 1000)
+        }
         break;
       case 'strict':
         if (state.onoff) dispatch(setStrict(toggle))

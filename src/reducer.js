@@ -5,6 +5,7 @@ import {
   RESET_PLAYER_SEQUENCE,
   PUSH_GAME_SEQUENCE,
   PLAY_GAME_SEQUENCE,
+  RESET_GAME_SEQUENCE,
   SET_DISPLAY,
   SET_IS_GOING_NEXT,
   SET_ONOFF,
@@ -36,20 +37,22 @@ const playerSequence = (state = [], action) => {
   }
 }
 
-const gameSequence = (state = [1], action) => {
+const gameSequence = (state = [], action) => {
   switch (action.type) {
     case PUSH_GAME_SEQUENCE:
       return [
         ...state,
         action.number
       ]
+    case RESET_GAME_SEQUENCE:
+      return []
     case PLAY_GAME_SEQUENCE:
     default:
       return state
   }
 }
 
-const display = (state = '1', action) => {
+const display = (state = '', action) => {
   switch (action.type) {
     case SET_DISPLAY:
       return action.display
