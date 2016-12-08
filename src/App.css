@@ -52,7 +52,7 @@
 .pad {
   width: 40vw;
   height: 40vw;
-  opacity: .65;
+  opacity: .6;
 }
 .pad.clickable:active {
   opacity: 1;
