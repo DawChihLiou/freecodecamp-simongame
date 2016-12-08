@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
-const Board = ({ isGoingNext=false, display='7' }) => {
+const Board = ({ isGoingNext, display='' }) => {
   var scoreStyle = classNames({
     'animated'    : true,
     'fadeInDown'  : !isGoingNext,

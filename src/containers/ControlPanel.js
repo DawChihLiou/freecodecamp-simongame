@@ -219,7 +219,6 @@ function playAudio (sequence, dispatch) {
   })
 }
 
-
 const ControlPanel = connect(
   mapStateToProps,
   mapDispatchToProps

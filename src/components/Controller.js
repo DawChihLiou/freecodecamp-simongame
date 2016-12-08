@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
-import className from 'classnames'
+import classNames from 'classnames'
 
 const Controller = ({ onoff, start, strict, onClick }) => {
   var baseStyle   = { 'col-xs-4': true, 'control': true, 'clickable': true }
-  var startStyle  = className(Object.assign({}, baseStyle, { 'active': start && onoff, 'clickable': onoff }))
-  var switchStyle = className(Object.assign({}, baseStyle, { 'active': onoff }))
-  var strictStyle = className(Object.assign({}, baseStyle, { 'active': strict && onoff, 'clickable': onoff }))
+  var startStyle  = classNames(Object.assign({}, baseStyle, { 'active': start && onoff, 'clickable': onoff }))
+  var switchStyle = classNames(Object.assign({}, baseStyle, { 'active': onoff }))
+  var strictStyle = classNames(Object.assign({}, baseStyle, { 'active': strict && onoff, 'clickable': onoff }))
 
   return (
     <div className="wrap" onClick={ onClick }>
