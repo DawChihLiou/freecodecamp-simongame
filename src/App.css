@@ -124,3 +124,27 @@
     line-height: 22.5vw;
   }
 }
+
+@media (min-width: 992px) {
+  .container {
+    width: 30vw !important;
+  }
+  .pad {
+    width: 15vw;
+    height: 15vw;
+  }
+  .control {
+    height: 3vw;
+    line-height: 3vw;
+  }
+  .score-board {
+    width: 12.5vw;
+    height: 12.5vw;
+    top: 25vw;
+    left: 50%;
+    margin: -6.25vw;
+  }
+  .score-board h1 {
+    line-height: 12.5vw;
+  }
+}
