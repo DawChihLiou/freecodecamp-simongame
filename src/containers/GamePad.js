@@ -5,6 +5,7 @@ import {
   pushPlayerSequence,
   pushGameSequence,
   resetPlayerSequence,
+  resetGameSequence,
   setDisplay,
   setIsGoingNext,
   setPadClickability
@@ -38,31 +39,65 @@ function handlePlayerSequence (id) {
       dispatch(setPadClickability(false))
 
       if (state.playerSequence.join('') === state.gameSequence.join('')) {
+        // correct player sequence
+
         // push a new random number to game sequence and initiate displayed score change
         dispatch(pushGameSequence(Math.floor(Math.random() * 3)))
         dispatch(setIsGoingNext(true))
 
         state = getState()
+
         setTimeout(()=> {
           // displayed score change
           dispatch(setDisplay(state.gameSequence.length.toString()))
           dispatch(setIsGoingNext(false))
-
-          // play the next sequence
-          setTimeout(() => {
-            playAudio(state.gameSequence, dispatch)
-          }, 800)
         }, 200)
-      } else {
-        dispatch(setDisplay('Wrong!!'))
 
+        // play the next sequence
         setTimeout(() => {
-          // display current score
-          dispatch(setDisplay(state.gameSequence.length.toString()))
-          // play the current squence
           playAudio(state.gameSequence, dispatch)
         }, 1000)
+      } else {
+        // incorrect play sequence
+
+        dispatch(setDisplay(':('))
+
+        if (state.strict) {
+          dispatch(resetGameSequence())
+
+          state = getState()
+
+          setTimeout(() => {
+            dispatch(setIsGoingNext(true))
+          }, 800)
+
+          setTimeout(() => {
+            dispatch(pushGameSequence(Math.floor(Math.random() * 3)))
+            state = getState()
+
+            dispatch(setDisplay(state.gameSequence.length.toString()))
+            dispatch(setIsGoingNext(false))
+          }, 1600)
+
+          setTimeout(() => {
+            // display current score
+            dispatch(setDisplay(state.gameSequence.length.toString()))
+            // play the current squence
+            playAudio(state.gameSequence, dispatch)
+          }, 2600)
+        } else {
+          setTimeout(() => {
+            // display current score
+            dispatch(setDisplay(state.gameSequence.length.toString()))
+            // play the current squence
+            playAudio(state.gameSequence, dispatch)
+          }, 1000)
+        }
+
+
+
       }
+
       // reset player sequence for the next attempt
       dispatch(resetPlayerSequence())
     }

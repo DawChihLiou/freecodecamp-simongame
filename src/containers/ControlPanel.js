@@ -115,7 +115,56 @@ function handlePanel (id) {
         }
         break;
       case 'strict':
-        if (state.onoff) dispatch(setStrict(toggle))
+        if (!state.onoff) return
+
+        dispatch(setStrict(toggle))
+        dispatch(setIsGoingNext(true))
+        dispatch(setPadClickability(false))
+
+        if (!toggle) {
+          // normal mode
+          setTimeout(() => {
+            dispatch(setDisplay('normal'))
+            dispatch(setIsGoingNext(false))
+          }, 800)
+
+          if (!state.start) return
+
+          setTimeout(() => {
+            dispatch(setIsGoingNext(true))
+          }, 1600)
+
+          setTimeout(() => {
+            dispatch(setDisplay(state.gameSequence.length.toString()))
+            dispatch(setIsGoingNext(false))
+          }, 2400)
+
+          setTimeout(() => {
+            dispatch(setPadClickability(true))
+          }, 2600)
+        } else {
+          // strict mode
+          setTimeout(() => {
+            dispatch(setDisplay('strict'))
+            dispatch(setIsGoingNext(false))
+          }, 800)
+
+          if (!state.start) return
+
+          setTimeout(() => {
+            dispatch(setIsGoingNext(true))
+          }, 1600)
+
+          setTimeout(() => {
+            dispatch(setDisplay(state.gameSequence.length.toString()))
+            dispatch(setIsGoingNext(false))
+          }, 2400)
+
+          setTimeout(() => {
+            dispatch(setPadClickability(true))
+          }, 2600)
+        }
+
         break;
       default:
         return
