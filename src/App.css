@@ -19,9 +19,30 @@
   height: 80vw;
   position: relative;
   text-align: center;
+  padding-top: 10vw;
 }
 .margin-no {
   margin: 0;
+}
+.margin-top-sm {
+  margin-top: 3vh
+}
+.footer p {
+  color: #777;
+}
+.footer a {
+  color: #e67e22;
+  text-decoration: none;
+  -webkit-transition: color 0.1s linear;
+  transition: color 0.1s linear;
+}
+.footer a:hover, a:active {
+  color: #B95E0D;
+  text-decoration: none;
+}
+.footer a:visited {
+  color: #B95E0D;
+  text-decoration: none;
 }
 
 /* pad */
@@ -53,6 +74,10 @@
   line-height: 8vw;
   color: #777;
   font-size: 1.2em;
+  -webkit-transition: backgroud-color .3s ease, color .3s ease;
+  -moz-transition: backgroud-color .3s ease, color .3s ease;
+  -o-transition: backgroud-color .3s ease, color .3s ease;
+  transition: backgroud-color .3s ease, color .3s ease;
 }
 .control.active {
   background-color: #1abc9c;
@@ -65,10 +90,34 @@
   height: 36vw;
   background-color: #fff;
   position: absolute;
-  top: 50%;
+  top: 49vw;
   left: 50%;
   margin: -18vw;
 }
 .score-board h1 {
   line-height: 36vw;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 50vw !important;
+  }
+  .pad {
+    width: 25vw;
+    height: 25vw;
+  }
+  .control {
+    height: 5vw;
+    line-height: 5vw;
+  }
+  .score-board {
+    width: 22.5vw;
+    height: 22.5vw;
+    top: 35vw;
+    left: 50%;
+    margin: -11.25vw;
+  }
+  .score-board h1 {
+    line-height: 22.5vw;
+  }
 }

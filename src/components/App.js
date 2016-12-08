@@ -2,6 +2,7 @@ import React from 'react'
 import GamePad from '../containers/GamePad'
 import Scoreboard from '../containers/Scoreboard'
 import ControlPanel from '../containers/ControlPanel'
+import Footer from './Footer'
 import '../App.css'
 
 const App = () => (
@@ -9,6 +10,7 @@ const App = () => (
     <GamePad />
     <Scoreboard />
     <ControlPanel />
+    <Footer />
   </div>
 )
 
