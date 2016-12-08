@@ -21,6 +21,9 @@
   text-align: center;
   padding-top: 10vw;
 }
+.shine {
+  opacity: 1 !important;
+}
 .margin-no {
   margin: 0;
 }

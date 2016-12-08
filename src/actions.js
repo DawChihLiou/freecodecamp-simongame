@@ -9,6 +9,10 @@ export const PUSH_GAME_SEQUENCE   = 'PUSH_GAME_SEQUENCE'
 export const RESET_GAME_SEQUENCE  = 'RESET_GAME_SEQUENCE'
 export const PUSH_PLAYER_SEQUENCE = 'PUSH_PLAYER_SEQUENCE'
 export const RESET_PLAYER_SEQUENCE= 'RESET_PLAYER_SEQUENCE'
+export const SET_P0_SHINE         = 'SET_P0_SHINE'
+export const SET_P1_SHINE         = 'SET_P1_SHINE'
+export const SET_P2_SHINE         = 'SET_P2_SHINE'
+export const SET_P3_SHINE         = 'SET_P3_SHINE'
 export const RESET                = 'RESET'
 
 export const setPadClickability = (clickable) => ({
@@ -54,6 +58,26 @@ export const pushGameSequence = (number) => ({
 export const pushPlayerSequence = (number) => ({
   type: PUSH_PLAYER_SEQUENCE,
   number
+})
+
+export const setP0Shine = (shine) => ({
+  type: SET_P0_SHINE,
+  shine
+})
+
+export const setP1Shine = (shine) => ({
+  type: SET_P1_SHINE,
+  shine
+})
+
+export const setP2Shine = (shine) => ({
+  type: SET_P2_SHINE,
+  shine
+})
+
+export const setP3Shine = (shine) => ({
+  type: SET_P3_SHINE,
+  shine
 })
 
 export const resetPlayerSequence = () => ({

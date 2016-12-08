@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Pad from '../components/Pad'
-import { audio, setTimeoutAudio } from '../utils/audio'
+import { audio } from '../utils/audio'
 import {
   pushPlayerSequence,
   pushGameSequence,
@@ -8,11 +8,19 @@ import {
   resetGameSequence,
   setDisplay,
   setIsGoingNext,
-  setPadClickability
+  setPadClickability,
+  setP0Shine,
+  setP1Shine,
+  setP2Shine,
+  setP3Shine,
 } from '../actions'
 
 const mapStateToProps = (state) => ({
-  clickable: state.clickable
+  clickable: state.clickable,
+  p0Shine: state.p0Shine,
+  p1Shine: state.p1Shine,
+  p2Shine: state.p2Shine,
+  p3Shine: state.p3Shine
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -104,12 +112,42 @@ function handlePlayerSequence (id) {
 function playAudio (sequence, dispatch) {
   sequence.forEach((id, i) => {
     let after = (i + 1) * 800
-    setTimeoutAudio(id, after)
+
+    setTimeout(() => {
+      audio[id].play()
+
+      dispatch(setP0Shine(false))
+      dispatch(setP1Shine(false))
+      dispatch(setP2Shine(false))
+      dispatch(setP3Shine(false))
+
+      switch (id) {
+        case 0:
+          dispatch(setP0Shine(true))
+          break;
+        case 1:
+          dispatch(setP1Shine(true))
+          break;
+        case 2:
+          dispatch(setP2Shine(true))
+          break;
+        case 3:
+          dispatch(setP3Shine(true))
+          break;
+        default:
+          return
+      }
+
+    }, after)
 
     if (i === sequence.length - 1) {
       setTimeout(() => {
+        dispatch(setP0Shine(false))
+        dispatch(setP1Shine(false))
+        dispatch(setP2Shine(false))
+        dispatch(setP3Shine(false))
         dispatch(setPadClickability(true))
-      }, after + 100)
+      }, after + 800)
     }
   })
 }

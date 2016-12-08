@@ -11,6 +11,10 @@ import {
   SET_ONOFF,
   SET_START,
   SET_STRICT,
+  SET_P0_SHINE,
+  SET_P1_SHINE,
+  SET_P2_SHINE,
+  SET_P3_SHINE,
   RESET
 } from './actions'
 
@@ -97,6 +101,42 @@ const strict = (state = false, action) => {
   }
 }
 
+const p0Shine = (state = false, action) => {
+  switch (action.type) {
+    case SET_P0_SHINE:
+      return action.shine
+    default:
+      return state
+  }
+}
+
+const p1Shine = (state = false, action) => {
+  switch (action.type) {
+    case SET_P1_SHINE:
+      return action.shine
+    default:
+      return state
+  }
+}
+
+const p2Shine = (state = false, action) => {
+  switch (action.type) {
+    case SET_P2_SHINE:
+      return action.shine
+    default:
+      return state
+  }
+}
+
+const p3Shine = (state = false, action) => {
+  switch (action.type) {
+    case SET_P3_SHINE:
+      return action.shine
+    default:
+      return state
+  }
+}
+
 const appReducer = combineReducers({
   clickable,
   playerSequence,
@@ -105,7 +145,11 @@ const appReducer = combineReducers({
   isGoingNext,
   onoff,
   start,
-  strict
+  strict,
+  p0Shine,
+  p1Shine,
+  p2Shine,
+  p3Shine,
 })
 
 const rootReducer = (state, action) => {

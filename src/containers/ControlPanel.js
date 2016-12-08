@@ -10,7 +10,11 @@ import {
   resetGameSequence,
   setDisplay,
   setIsGoingNext,
-  pushGameSequence
+  pushGameSequence,
+  setP0Shine,
+  setP1Shine,
+  setP2Shine,
+  setP3Shine,
 } from '../actions'
 
 const mapStateToProps = (state) => ({
@@ -90,7 +94,7 @@ function handlePanel (id) {
           }, 2000)
 
           setTimeout(() => {
-            setTimeoutAudio(state.gameSequence[0], 0)
+            playAudio(state.gameSequence.slice(0, 1), dispatch)
             dispatch(setPadClickability(true))
           }, 3000)
         } else {
@@ -109,7 +113,7 @@ function handlePanel (id) {
 
           // play audio and enable click on pad
           setTimeout(() => {
-            setTimeoutAudio(state.gameSequence[0], 0)
+            playAudio(state.gameSequence.slice(0, 1), dispatch)
             dispatch(setPadClickability(true))
           }, 1000)
         }
@@ -171,6 +175,50 @@ function handlePanel (id) {
     }
   }
 }
+
+function playAudio (sequence, dispatch) {
+  sequence.forEach((id, i) => {
+    let after = (i + 1) * 800
+
+    setTimeout(() => {
+      audio[id].play()
+
+      dispatch(setP0Shine(false))
+      dispatch(setP1Shine(false))
+      dispatch(setP2Shine(false))
+      dispatch(setP3Shine(false))
+
+      switch (id) {
+        case 0:
+          dispatch(setP0Shine(true))
+          break;
+        case 1:
+          dispatch(setP1Shine(true))
+          break;
+        case 2:
+          dispatch(setP2Shine(true))
+          break;
+        case 3:
+          dispatch(setP3Shine(true))
+          break;
+        default:
+          return
+      }
+
+    }, after)
+
+    if (i === sequence.length - 1) {
+      setTimeout(() => {
+        dispatch(setP0Shine(false))
+        dispatch(setP1Shine(false))
+        dispatch(setP2Shine(false))
+        dispatch(setP3Shine(false))
+        dispatch(setPadClickability(true))
+      }, after + 800)
+    }
+  })
+}
+
 
 const ControlPanel = connect(
   mapStateToProps,
