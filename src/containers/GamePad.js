@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Pad from '../components/Pad'
-import audio from '../utils/audio'
+import { audio, setTimeoutAudio } from '../utils/audio'
 import {
   pushPlayerSequence,
   pushGameSequence,
@@ -69,10 +69,6 @@ function handlePlayerSequence (id) {
   }
 }
 
-function setTimeoutAudio (id, t) {
-  setTimeout(() => { audio[id].play() }, t);
-}
-
 function playAudio (sequence, dispatch) {
   sequence.forEach((id, i) => {
     let after = (i + 1) * 500
@@ -81,7 +77,7 @@ function playAudio (sequence, dispatch) {
     if (i === sequence.length - 1) {
       setTimeout(() => {
         dispatch(setPadClickability(true))
-      }, after+100)
+      }, after + 100)
     }
   })
 }
