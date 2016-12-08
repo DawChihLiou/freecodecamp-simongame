@@ -93,9 +93,6 @@ function handlePlayerSequence (id) {
             playAudio(state.gameSequence, dispatch)
           }, 1000)
         }
-
-
-
       }
 
       // reset player sequence for the next attempt
@@ -106,7 +103,7 @@ function handlePlayerSequence (id) {
 
 function playAudio (sequence, dispatch) {
   sequence.forEach((id, i) => {
-    let after = (i + 1) * 500
+    let after = (i + 1) * 800
     setTimeoutAudio(id, after)
 
     if (i === sequence.length - 1) {
